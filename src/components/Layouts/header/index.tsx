@@ -34,11 +34,11 @@ export function Header() {
         </Link>
       )}
 
-      <div className="max-xl:hidden">
+      {/* <div className="max-xl:hidden">
         <h1 className="mb-0.5 text-heading-5 font-bold text-dark dark:text-white">
           Suraksha.ai
         </h1>
-      </div>
+      </div> */}
 
       <div className="flex flex-1 items-center justify-end gap-2 min-[375px]:gap-4">
         <div className="relative w-full max-w-[300px]">
@@ -59,17 +59,17 @@ export function Header() {
             <UserButton afterSignOutUrl="/" />
           ) : (
             <div className="flex gap-2">
-              <SignInButton>
-                <button className="rounded-lg border-black shadow-xl px-4 py-2 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
-                  Sign In
-                </button>
-              </SignInButton>
-              <SignUpButton>
-                <button className="rounded-lg border-black shadow-xl px-3 py-1 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
-                  Sign Up
-                </button>
-              </SignUpButton>
-            </div>
+            <Link href="/sign-in">
+              <button className="rounded-lg border-black shadow-xl px-4 py-2 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
+                Sign In
+              </button>
+            </Link>
+            <Link href="/sign-up">
+              <button className="rounded-lg border-black shadow-xl px-4 py-2 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
+                Sign Up
+              </button>
+            </Link>
+          </div>
           )}
         </div>
       </div>
