@@ -8,6 +8,7 @@ import { OverviewCardsGroup } from "./_components/overview-cards";
 import { OverviewCardsSkeleton } from "./_components/overview-cards/skeleton";
 import { RegionLabels } from "./_components/region-labels";
 import { CrowdReportSection } from "./_components/CrowdReportSection"; 
+import SafetyTips from "./_components/SafetyTips";
 
 type PropsType = {
   searchParams: Promise<{
@@ -40,6 +41,11 @@ export default async function Home({ searchParams }: PropsType) {
 
         {/* ✅ Community Crowd Report Section */}
         <CrowdReportSection />
+
+        {/* ✅ Safety Tips Section */}
+        <div className="col-span-12">
+          <SafetyTips />
+        </div>
 
         <div className="col-span-12 grid xl:col-span-8">
           <Suspense fallback={<TopChannelsSkeleton />}>
