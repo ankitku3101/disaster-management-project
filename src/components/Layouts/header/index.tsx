@@ -59,17 +59,17 @@ export function Header() {
             <UserButton afterSignOutUrl="/" />
           ) : (
             <div className="flex gap-2">
-              <SignInButton>
-                <button className="rounded-lg border-black shadow-xl px-4 py-2 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
-                  Sign In
-                </button>
-              </SignInButton>
-              <SignUpButton>
-                <button className="rounded-lg border-black shadow-xl px-3 py-1 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
-                  Sign Up
-                </button>
-              </SignUpButton>
-            </div>
+            <Link href="/sign-in">
+              <button className="rounded-lg border-black shadow-xl px-4 py-2 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
+                Sign In
+              </button>
+            </Link>
+            <Link href="/sign-up">
+              <button className="rounded-lg border-black shadow-xl px-4 py-2 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
+                Sign Up
+              </button>
+            </Link>
+          </div>
           )}
         </div>
       </div>
