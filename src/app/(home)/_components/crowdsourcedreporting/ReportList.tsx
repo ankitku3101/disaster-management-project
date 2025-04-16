@@ -23,7 +23,7 @@ export function ReportList({ reports, onDelete }: Props) {
 
           <div className="text-sm text-gray-500 dark:text-gray-300">{new Date(report.timestamp).toLocaleString()}</div>
           <div className="font-bold text-lg text-red-700 dark:text-red-400">{report.disasterType.toUpperCase()}</div>
-          <div className="text-md text-gray-700 dark:text-gray-100">{report.location} {report.pinCode}</div>
+          <div className="text-md text-gray-700 dark:text-gray-100">{report.location} {report.pincode}</div>
           <p className="mt-2 text-sm text-gray-600 dark:text-gray-200">{report.description}</p>
           {report.imageUrl && (
             <img src={report.imageUrl} alt="Report Image" className="mt-3 rounded w-full max-h-60 object-cover" />

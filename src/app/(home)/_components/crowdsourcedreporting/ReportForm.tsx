@@ -1,11 +1,17 @@
 'use client';
 import { useState } from 'react';
+import { UserReport } from '@/types/report';
 
-export function ReportForm() {
+interface ReportFormProps {
+  onSubmit: (report: UserReport) => void;
+}
+
+export function ReportForm({ onSubmit }: ReportFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     disasterType: 'select',
     location: '',
+    pincode: '',
     description: '',
     imageUrl: '',
   });
@@ -39,12 +45,15 @@ export function ReportForm() {
       return;
     }
 
+    const timestamp = new Date().toISOString();
+
     const form = new FormData();
     form.append('name', formData.name);
     form.append('disasterType', formData.disasterType);
     form.append('location', formData.location);
+    form.append('pincode', String(Number(formData.pincode)));
     form.append('description', formData.description);
-    form.append('timestamp', new Date().toISOString());
+    form.append('timestamp', timestamp);
     form.append('image', imageFile);
 
     try {
@@ -54,13 +63,24 @@ export function ReportForm() {
       });
 
       if (res.ok) {
-        const data = await res.json();
-        console.log('Success:', data);
+        const newReport: UserReport = {
+          name: formData.name,
+          disasterType: formData.disasterType,
+          location: formData.location,
+          pincode: Number(formData.pincode),
+          description: formData.description,
+          timestamp,
+          imageUrl: formData.imageUrl,
+        };
+
+        onSubmit(newReport); // 🔥 Call the parent prop function
+
         alert('Report submitted successfully!');
         setFormData({
           name: '',
           disasterType: 'select',
           location: '',
+          pincode: '',
           description: '',
           imageUrl: '',
         });
@@ -108,6 +128,15 @@ export function ReportForm() {
         value={formData.location}
         onChange={handleChange}
         placeholder="Location"
+        className="w-full p-2 rounded border"
+        required
+      />
+      
+      <input
+        name="pincode"
+        value={formData.pincode}
+        onChange={handleChange}
+        placeholder="Pincode"
         className="w-full p-2 rounded border"
         required
       />
