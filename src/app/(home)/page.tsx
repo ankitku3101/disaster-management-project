@@ -1,5 +1,5 @@
 import { WeatherOverview } from "@/components/Charts/weather_overview";
-import { TopChannels } from "@/components/Tables/top-channels";
+// import { TopChannels } from "@/components/Tables/top-channels";
 import { TopChannelsSkeleton } from "@/components/Tables/top-channels/skeleton";
 import { createTimeFrameExtractor } from "@/utils/timeframe-extractor";
 import { Suspense } from "react";
