@@ -7,7 +7,7 @@ import { DisasterAlertsCard } from "./_components/DisasterAlertsCard";
 import { OverviewCardsGroup } from "./_components/overview-cards";
 import { OverviewCardsSkeleton } from "./_components/overview-cards/skeleton";
 import { RegionLabels } from "./_components/region-labels";
-import { CrowdReportSection } from "./_components/CrowdReportSection"; // 👈 Import here
+import { CrowdReportSection } from "./_components/CrowdReportSection"; 
 
 type PropsType = {
   searchParams: Promise<{
