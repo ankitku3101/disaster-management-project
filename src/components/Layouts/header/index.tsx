@@ -7,10 +7,11 @@ import { useSidebarContext } from "../sidebar/sidebar-context";
 import { MenuIcon } from "./icons";
 // import { Notification } from "./notification";
 import { ThemeToggleSwitch } from "./theme-toggle";
-import { UserInfo } from "./user-info";
+import { useUser, UserButton, SignInButton, SignUpButton } from "@clerk/nextjs";
 
 export function Header() {
   const { toggleSidebar, isMobile } = useSidebarContext();
+  const { user, isSignedIn } = useUser();
 
   return (
     <header className="sticky top-0 z-30 flex items-center justify-between border-b border-stroke bg-white px-4 py-5 shadow-1 dark:border-stroke-dark dark:bg-gray-dark md:px-5 2xl:px-10">
@@ -28,15 +29,14 @@ export function Header() {
             src={"/images/logo/logo-icon.svg"}
             width={32}
             height={32}
-            alt=""
-            role="presentation"
+            alt="Logo"
           />
         </Link>
       )}
 
       <div className="max-xl:hidden">
         <h1 className="mb-0.5 text-heading-5 font-bold text-dark dark:text-white">
-          Dashboard
+          Suraksha.ai
         </h1>
       </div>
 
@@ -47,7 +47,6 @@ export function Header() {
             placeholder="Search"
             className="flex w-full items-center gap-3.5 rounded-full border bg-gray-2 py-3 pl-[53px] pr-5 outline-none transition-colors focus-visible:border-primary dark:border-dark-3 dark:bg-dark-2 dark:hover:border-dark-4 dark:hover:bg-dark-3 dark:hover:text-dark-6 dark:focus-visible:border-primary"
           />
-
           <SearchIcon className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 max-[1015px]:size-5" />
         </div>
 
@@ -56,7 +55,22 @@ export function Header() {
         {/* <Notification /> */}
 
         <div className="shrink-0">
-          <UserInfo />
+          {isSignedIn ? (
+            <UserButton afterSignOutUrl="/" />
+          ) : (
+            <div className="flex gap-2">
+              <SignInButton>
+                <button className="rounded-lg border-black shadow-xl px-4 py-2 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
+                  Sign In
+                </button>
+              </SignInButton>
+              <SignUpButton>
+                <button className="rounded-lg border-black shadow-xl px-3 py-1 text-sm bg-black text-white hover:bg-primary hover:text-white transition">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </div>
+          )}
         </div>
       </div>
     </header>
