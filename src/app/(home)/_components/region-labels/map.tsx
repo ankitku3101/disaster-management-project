@@ -4,6 +4,18 @@ import { useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
+// Fix for default marker icon not found issue
+delete (L.Icon.Default.prototype as any)._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+});
+
+// Disaster Hotspot Data
 const disasterHotspots = [
   {
     id: 1,
@@ -31,37 +43,17 @@ const disasterHotspots = [
   },
   {
     id: 4,
-    type: "Landslide",
-    lat: 27.1767,
-    lng: 78.0081,
-    severity: "Moderate",
-    location: "Agra, UP",
-  },
-  {
-    id: 5,
     type: "Heatwave",
-    lat: 19.076,
-    lng: 72.8777,
-    severity: "High",
-    location: "Mumbai, MH",
-  },
-  {
-    id: 6,
-    type: "Thunderstorm",
-    lat: 13.0827,
-    lng: 80.2707,
-    severity: "Low",
-    location: "Chennai, TN",
+    lat: 22.5726,
+    lng: 88.3639,
+    severity: "Moderate",
+    location: "Kolkata",
   },
 ];
 
 export default function Map() {
   useEffect(() => {
-    const map = L.map("map-container", {
-      center: [22.9734, 78.6569], // Center of India
-      zoom: 5,
-      scrollWheelZoom: true,
-    });
+    const map = L.map("mapOne").setView([22.9734, 78.6569], 5); // Center on India
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; OpenStreetMap contributors',
@@ -73,44 +65,34 @@ export default function Map() {
           ? "red"
           : spot.severity === "High"
           ? "orange"
-          : spot.severity === "Moderate"
-          ? "yellow"
-          : "green";
+          : "yellow";
 
-      const iconUrl =
-        color === "red"
-          ? "https://upload.wikimedia.org/wikipedia/commons/e/ec/Red_dot.svg"
-          : color === "orange"
-          ? "https://upload.wikimedia.org/wikipedia/commons/2/2f/Orange_dot.svg"
-          : color === "yellow"
-          ? "https://upload.wikimedia.org/wikipedia/commons/e/e0/Yellow_dot.svg"
-          : "https://upload.wikimedia.org/wikipedia/commons/a/a6/Marker_dot_green.svg";
+      const marker = L.circleMarker([spot.lat, spot.lng], {
+        radius: 10,
+        fillColor: color,
+        color: "#000",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8,
+      }).addTo(map);
 
-      const customIcon = new L.Icon({
-        iconUrl,
-        iconSize: [14, 14],
-        iconAnchor: [7, 7],
-        popupAnchor: [0, -10],
-      });
-
-      L.marker([spot.lat, spot.lng], { icon: customIcon })
-        .addTo(map)
-        .bindPopup(
-          `<strong>${spot.type}</strong><br/>Location: ${spot.location}<br/>Severity: ${spot.severity}`
-        );
+      marker.bindPopup(
+        `<strong>${spot.type}</strong><br/>Location: ${spot.location}<br/>Severity: ${spot.severity}`
+      );
     });
 
+    // Cleanup: Remove the map when component unmounts
     return () => {
-      map.remove();
+      map.remove(); // This properly cleans up the map
     };
-  }, []);
+  }, []); // Empty dependency array, run once on mount
 
   return (
-    <div className="h-[600px] w-full overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700">
+    <div className="relative h-[500px] w-full overflow-hidden rounded-xl border border-border bg-white shadow-sm dark:bg-gray-900">
       <div
-        id="map-container"
-        className="h-full w-full rounded-lg"
-        style={{ minHeight: "100%", height: "100%" }}
+        id="mapOne"
+        className="h-full w-full rounded-xl"
+        style={{ zIndex: 1 }}
       />
     </div>
   );
