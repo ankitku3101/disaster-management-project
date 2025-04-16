@@ -22,70 +22,28 @@ export async function getOverviewData() {
   };
 }
 
-export async function getChatsData() {
-  // Fake delay
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+// fetch.ts
 
+export async function getDisasterAlerts() {
+  // This is mock data — you can replace it with a real API call later
   return [
     {
-      name: "Jacob Jones",
-      profile: "/images/user/user-01.png",
-      isActive: true,
-      lastMessage: {
-        content: "See you tomorrow at the meeting!",
-        type: "text",
-        timestamp: "2024-12-19T14:30:00Z",
-        isRead: false,
-      },
-      unreadCount: 3,
+      title: "Earthquake in Nepal",
+      description: "A 6.4 magnitude earthquake struck central Nepal today morning.",
+      timestamp: new Date().toISOString(),
+      url: "https://example.com/alerts/nepal-earthquake"
     },
     {
-      name: "Wilium Smith",
-      profile: "/images/user/user-03.png",
-      isActive: true,
-      lastMessage: {
-        content: "Thanks for the update",
-        type: "text",
-        timestamp: "2024-12-19T10:15:00Z",
-        isRead: true,
-      },
-      unreadCount: 0,
+      title: "Flood Warning - Assam",
+      description: "Heavy rainfall in upper Assam could cause flooding in low-lying areas.",
+      timestamp: new Date(Date.now() - 3600000).toISOString(),
+      url: "https://example.com/alerts/assam-flood"
     },
     {
-      name: "Johurul Haque",
-      profile: "/images/user/user-04.png",
-      isActive: false,
-      lastMessage: {
-        content: "What's up?",
-        type: "text",
-        timestamp: "2024-12-19T10:15:00Z",
-        isRead: true,
-      },
-      unreadCount: 0,
-    },
-    {
-      name: "M. Chowdhury",
-      profile: "/images/user/user-05.png",
-      isActive: false,
-      lastMessage: {
-        content: "Where are you now?",
-        type: "text",
-        timestamp: "2024-12-19T10:15:00Z",
-        isRead: true,
-      },
-      unreadCount: 2,
-    },
-    {
-      name: "Akagami",
-      profile: "/images/user/user-07.png",
-      isActive: false,
-      lastMessage: {
-        content: "Hey, how are you?",
-        type: "text",
-        timestamp: "2024-12-19T10:15:00Z",
-        isRead: true,
-      },
-      unreadCount: 0,
-    },
+      title: "Cyclone Alert - Bay of Bengal",
+      description: "Cyclone forming over Bay of Bengal expected to intensify within 48 hours.",
+      timestamp: new Date(Date.now() - 7200000).toISOString(),
+      url: "https://example.com/alerts/cyclone-bob"
+    }
   ];
 }
