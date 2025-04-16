@@ -1,5 +1,7 @@
+from datetime import datetime
 import os
 from typing import Dict, List, Optional
+import ngrok
 from pydantic import BaseModel, Field
 from fastapi import FastAPI, HTTPException
 from langchain.prompts import PromptTemplate
@@ -7,6 +9,8 @@ from langchain_groq import ChatGroq
 from langchain.chains import LLMChain
 from langchain.output_parsers import ResponseSchema, StructuredOutputParser
 from dotenv import load_dotenv
+
+from weather import Weather
 
 load_dotenv()
 # Set up your API key for Groq
@@ -214,6 +218,21 @@ async def disaster_alert(disaster_input: DisasterInput):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing disaster alert: {str(e)}")
 
+@app.get("/get-current-weather")
+async def get_current_weather_update(lat:float, lon:float):
+    weather = Weather(lat, lon)
+    return weather.get_current_weather()
+
+
+@app.get("/get-past-weather")
+async def get_past_weather(start:str, lat:float, lon:float, end:str=datetime.today().strftime('%Y-%m-%d')):
+    return Weather.get_weather_history(start=start, end=end, lat=lat, lon=lon)
+
+
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # uvicorn.run(app, host="0.0.0.0", port=8000)
+    listener = ngrok.forward(addr=8080, domain="mole-model-drake.ngrok-free.app", authtoken_from_env = True)
+    print(listener.url())
+    uvicorn.run("agent_pipeline:app", host="0.0.0.0", port=8080, reload=True)
+    ngrok.disconnect()
