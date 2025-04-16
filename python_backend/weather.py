@@ -22,6 +22,7 @@ class Weather:
                 "temp": data['current']['temp'],
                 "humidity": data['current']['humidity'],
                 "weather": data['current']['weather'],
+                "alerts": self.get_alerts(),
             }
         else:
             return {
@@ -49,17 +50,18 @@ class Weather:
                 'description': self.response.json()['message'],
             }
 
-    def get_weather_history(self, start):
-        url = f"https://historical-forecast-api.open-meteo.com/v1/forecast?latitude={self.LAT}&longitude={self.LON}&start_date={start}&end_date={datetime.today().strftime('%Y-%m-%d')}&hourly=temperature_2m,rain,relative_humidity_2m&wind_speed_unit=ms&timezone=auto"
+    @staticmethod
+    def get_weather_history(start:str, end:str, lat:str, lon:str):    
+        url = f"https://historical-forecast-api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&start_date={start}&end_date={end}&hourly=temperature_2m,rain,relative_humidity_2m&wind_speed_unit=ms&timezone=auto"
         response = requests.get(url)
         if response.status_code == 200:
-            print("History fetched")
-            return response         #TODO: IDK let's see if json() to be used or not for FastAPI... will try and add later maybe..!!!
+            print("Past Weather History fetched")
+            return response.json()         #TODO: IDK let's see if json() to be used or not for FastAPI... will try and add later maybe..!!!
         else:
-            print(response.reason)
+            print("Past Weather Data: ",response.reason)
             return {
-                'status_code': self.response.status_code,
-                'description': self.response.json()['message']
+                'status_code': response.status_code,
+                'description': response.json()
             }
 
 if __name__ == "__main__":
@@ -68,6 +70,6 @@ if __name__ == "__main__":
     print(weather.get_alerts())
 
     date_str = "2025-04-11"
-    weather.get_weather_history(date_str)
+    print(Weather.get_weather_history(date_str, '2025-04-16', 26, 82))
     
     
