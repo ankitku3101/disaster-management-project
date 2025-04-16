@@ -16,13 +16,19 @@ export function Sidebar() {
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
 
   const toggleExpanded = (title: string) => {
-    setExpandedItems((prev) => (prev.includes(title) ? [] : [title]));
+    setExpandedItems((prev) =>
+      prev.includes(title)
+        ? prev.filter((item) => item !== title)
+        : [...prev, title]
+    );
+  };
+  
 
     // Uncomment the following line to enable multiple expanded items
-    // setExpandedItems((prev) =>
-    //   prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title],
-    // );
-  };
+  //   setExpandedItems((prev) =>
+  //     prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title],
+  //   );
+  // };
 
   useEffect(() => {
     // Keep collapsible open, when it's subpage is active
