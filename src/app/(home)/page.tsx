@@ -52,11 +52,11 @@ export default async function Home({ searchParams }: PropsType) {
 
         <RegionLabels />
 
-        {/* <div className="col-span-12 grid xl:col-span-8">
+        <div className="col-span-12 grid xl:col-span-8">
           <Suspense fallback={<TopChannelsSkeleton />}>
             {/* <TopChannels /> */}
           </Suspense>
-        </div> */}
+        </div>
 
       
       </div>
