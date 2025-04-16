@@ -12,7 +12,7 @@ export async function WeatherOverview({
   timeFrame = "monthly",
   className,
 }: PropsType) {
-  const data = await getWeatherOverviewData(timeFrame); // 🌤️ your custom function
+  const data = await getWeatherOverviewData(timeFrame); //your custom function
 
   return (
     <div
