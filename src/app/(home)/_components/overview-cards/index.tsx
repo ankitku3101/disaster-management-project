@@ -1,47 +1,66 @@
-import { compactFormat } from "@/lib/format-number";
-import { getOverviewData } from "../../fetch";
+"use client";
+
+import { useEffect, useState } from "react";
 import { OverviewCard } from "./card";
 import * as icons from "./icons";
 
-export async function OverviewCardsGroup() {
-  const { views, profit, products, users } = await getOverviewData();
+export function OverviewCardsGroup() {
+  const [locationData, setLocationData] = useState({
+    location: "Fetching...",
+    postal: "Fetching...",
+    timezone: "Fetching...",
+    coordinates: "Fetching...",
+  });
+
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        const res = await fetch("https://ipapi.co/json/");
+        const data = await res.json();
+
+        setLocationData({
+          location: `${data.city}, ${data.country_name}`,
+          postal: data.postal,
+          timezone: data.timezone,
+          coordinates: `${data.latitude}, ${data.longitude}`,
+        });
+      } catch (error) {
+        setLocationData({
+          location: "Unavailable",
+          postal: "Unavailable",
+          timezone: "Unavailable",
+          coordinates: "Unavailable",
+        });
+      }
+    };
+
+    fetchLocation();
+  }, []);
 
   return (
     <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 2xl:gap-7.5">
       <OverviewCard
-        label="Total Views"
-        data={{
-          ...views,
-          value: compactFormat(views.value),
-        }}
-        Icon={icons.Views}
+        label="Your Location"
+        data={{ value: locationData.location }}
+        Icon={icons.Location}
       />
 
       <OverviewCard
-        label="Total Profit"
-        data={{
-          ...profit,
-          value: "$" + compactFormat(profit.value),
-        }}
-        Icon={icons.Profit}
+        label="Pin Code"
+        data={{ value: `${locationData.postal}` }}
+        Icon={icons.Pincode}
       />
 
       <OverviewCard
-        label="Total Products"
-        data={{
-          ...products,
-          value: compactFormat(products.value),
-        }}
-        Icon={icons.Product}
+        label="Time Zone"
+        data={{ value: `${locationData.timezone}` }}
+        Icon={icons.Timezone}
       />
 
       <OverviewCard
-        label="Total Users"
-        data={{
-          ...users,
-          value: compactFormat(users.value),
-        }}
-        Icon={icons.Users}
+        label="Lat & Long"
+        data={{ value: locationData.coordinates }}
+        Icon={icons.Coordinates}
       />
     </div>
   );
