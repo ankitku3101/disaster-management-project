@@ -33,6 +33,10 @@ export default async function Home({ searchParams }: PropsType) {
              timeFrame={extractTimeFrame("weather_overview")?.split(":")[1]}
         />
 
+        <Suspense fallback={null}>
+          <DisasterAlertsCard />
+        </Suspense>
+
 
         {/* <WeeksProfit
           key={extractTimeFrame("weeks_profit")}
@@ -54,9 +58,7 @@ export default async function Home({ searchParams }: PropsType) {
           </Suspense>
         </div>
 
-        <Suspense fallback={null}>
-          <DisasterAlertsCard />
-        </Suspense>
+      
       </div>
     </>
   );
