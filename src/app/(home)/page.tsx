@@ -43,7 +43,7 @@ export default async function Home({ searchParams }: PropsType) {
 
         <div className="col-span-12 grid xl:col-span-8">
           <Suspense fallback={<TopChannelsSkeleton />}>
-            <TopChannels />
+            {/* <TopChannels /> */}
           </Suspense>
         </div>
       </div>

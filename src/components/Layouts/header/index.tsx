@@ -36,7 +36,7 @@ export function Header() {
 
       <div className="max-xl:hidden">
         <h1 className="mb-0.5 text-heading-5 font-bold text-dark dark:text-white">
-          Dashboard
+          Suraksha.ai
         </h1>
       </div>
 
