@@ -15,7 +15,7 @@ const Chart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-export function PaymentsOverviewChart({ data }: PropsType) {
+export function WeatherOverviewChart({ data }: PropsType) {
   const isMobile = useIsMobile();
 
   const options: ApexOptions = {
