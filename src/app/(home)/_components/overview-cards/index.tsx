@@ -3,6 +3,8 @@
 import { useEffect, useState, createContext, useContext } from "react";
 import { OverviewCard } from "./card";
 import * as icons from "./icons";
+import { WeatherCard } from "../WeatherCard";
+
 
 interface LocationContextType {
   coordinates: string;
@@ -88,17 +90,21 @@ export function OverviewCardsGroup() {
           Icon={icons.Pincode}
         />
 
-        <OverviewCard
+        
+          <WeatherCard />
+        
+
+        {/* <OverviewCard
           label="Time Zone"
           data={{ value: `${locationData.timezone}` }}
           Icon={icons.Timezone}
-        />
+        /> */}
 
         <OverviewCard
           label="Lat & Long"
           data={{ value: locationData.coordinates }}
-          Icon={icons.Coordinates}
-        />
+          Icon={icons.Coordinates} 
+         />
       </div>
     </LocationContext.Provider>
   );
