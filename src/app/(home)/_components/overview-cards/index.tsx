@@ -80,12 +80,14 @@ export function OverviewCardsGroup() {
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <OverviewCard
           label="Your Location"
+          className="bg-gradient-to-br from-emerald-300 to-emerald-600"
           data={{ value: locationData.location }}
           Icon={icons.Location}
         />
 
         <OverviewCard
           label="Pin Code"
+          className="bg-gradient-to-br from-slate-400 to-lime-300"
           data={{ value: `${locationData.postal}` }}
           Icon={icons.Pincode}
         />
@@ -100,8 +102,9 @@ export function OverviewCardsGroup() {
           Icon={icons.Timezone}
         /> */}
 
-        <OverviewCard
+        <OverviewCard 
           label="Lat & Long"
+          className="bg-gradient-to-br from-orange-300 to-yellow-700"
           data={{ value: locationData.coordinates }}
           Icon={icons.Coordinates} 
          />

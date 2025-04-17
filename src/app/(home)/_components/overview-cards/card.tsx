@@ -2,20 +2,21 @@ import type { JSX, SVGProps } from "react";
 
 type PropsType = {
   label: string;
+  className?: string;
   data: {
     value: string;
   };
   Icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
 };
 
-export function OverviewCard({ label, data, Icon }: PropsType) {
+export function OverviewCard({ label, data, Icon, className }: PropsType) {
   return (
-    <div className="rounded-[10px] bg-white p-6 shadow-1 dark:bg-gray-dark">
+    <div className={`${className} rounded-[10px] p-6 shadow-1`}>
       <Icon />
 
       <div className="mt-6">
         <dl>
-          <dt className="mb-1.5 text-heading-6 font-bold text-dark dark:text-white">
+          <dt className="mb-1.5 text-heading-6 font-bold text-dark">
             {data.value}
           </dt>
 
