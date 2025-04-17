@@ -1,6 +1,6 @@
 import { PeriodPicker } from "@/components/period-picker";
 import { cn } from "@/lib/utils";
-import { getDevicesUsedData } from "@/services/charts.services";
+// import { getDevicesUsedData } from "@/services/charts.services";
 import { DonutChart } from "./chart";
 
 type PropsType = {
@@ -12,7 +12,7 @@ export async function UsedDevices({
   timeFrame = "monthly",
   className,
 }: PropsType) {
-  const data = await getDevicesUsedData(timeFrame);
+  // const data = await getDevicesUsedData(timeFrame);
 
   return (
     <div
@@ -30,7 +30,7 @@ export async function UsedDevices({
       </div>
 
       <div className="grid place-items-center">
-        <DonutChart data={data} />
+        {/* <DonutChart data={data} /> */}
       </div>
     </div>
   );
