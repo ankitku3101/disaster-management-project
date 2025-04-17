@@ -61,34 +61,39 @@ export function WeatherChartWrapper() {
       try {
         console.log("[WeatherChartWrapper] Fetching IP-based location...");
 
-        const res_ip = await fetch("https://ipapi.co/json");
-        const data_ip = await res_ip.json();
+        // const res_ip = await fetch("https://ipapi.co/json", {
+        //   headers: {
+        //     Accept: "application/json",
+        //   },
+        // });
+        // const data_ip = await res_ip.json();
 
-        console.log("[WeatherChartWrapper] Location data:", data_ip);
+        // console.log("[WeatherChartWrapper] Location data:", data_ip);
 
-        const url = `https://mole-model-drake.ngrok-free.app/get-past-weather?start=2024-12-12@lat=${data_ip.latitude}&lon=${data_ip.longitude}`;
-        console.log("[WeatherChartWrapper] Fetching past weather from:", url);
+        // const url = `https://mole-model-drake.ngrok-free.app/get-past-weather?start=2024-12-01&lat=${data_ip.latitude}&lon=${data_ip.longitude}`;
+        // console.log("[WeatherChartWrapper] Fetching past weather from:", url);
 
-        const res = await fetch(url);
-        if (!res.ok) {
-          throw new Error(`Weather API error! Status: ${res.status}`);
-        }
+        // const res = await fetch(url, {
+        //   headers: {
+        //     Accept: "application/json",
+        //   },
+        // });
 
-        const data = await res.json();
-        console.log("[WeatherChartWrapper] Weather data:", data);
+        // const data = await res.json();
+        // console.log("[WeatherChartWrapper] Weather data:", data);
 
-        const formatted: WeatherData = {
-          received: data?.received?.map((item: any) => ({
-            x: item.date,
-            y: item.value,
-          })) || [],
-          due: data?.due?.map((item: any) => ({
-            x: item.date,
-            y: item.value,
-          })) || [],
-        };
+        // const formatted: WeatherData = {
+        //   received: data?.received?.map((item: any) => ({
+        //     x: item.date,
+        //     y: item.value,
+        //   })) || [],
+        //   due: data?.due?.map((item: any) => ({
+        //     x: item.date,
+        //     y: item.value,
+        //   })) || [],
+        // };
 
-        setChartData(formatted);  // Set the chart data
+        // setChartData(formatted);  // Set the chart data
       } catch (err) {
         console.error("Failed to fetch weather data:", err);
       } finally {
