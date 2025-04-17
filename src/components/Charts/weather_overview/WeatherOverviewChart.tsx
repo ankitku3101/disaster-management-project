@@ -56,7 +56,7 @@ export function WeatherOverviewChart({ data }: WeatherOverviewChartProps) {
           stroke="#22c55e"
           fillOpacity={1}
           fill="url(#colorReceived)"
-          name="Received"
+          name="Humidity"
         />
         <Area
           type="monotone"
@@ -64,7 +64,7 @@ export function WeatherOverviewChart({ data }: WeatherOverviewChartProps) {
           stroke="#3b82f6"
           fillOpacity={1}
           fill="url(#colorDue)"
-          name="Expected"
+          name="Temperature"
         />
       </AreaChart>
     </ResponsiveContainer>
