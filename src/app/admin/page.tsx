@@ -1,7 +1,8 @@
-// src/app/admin/page.tsx
+
 import { checkRole } from "@/utils/roles";
 import { redirect } from "next/navigation";
-import ClientDashboard from "./_components/ClientDashboard"; // move UI logic here
+import ClientDashboard from "./_components/ClientDashboard";
+import NotifyUsersForm from "./_components/NotifyUsersForm";
 
 export default async function AdminDashboardPage() {
   const isAdmin = await checkRole("admin");
@@ -10,5 +11,10 @@ export default async function AdminDashboardPage() {
     redirect("/");
   }
 
-  return <ClientDashboard />;
+  return (
+    <div className="p-4 space-y-10">
+      <ClientDashboard />
+      <NotifyUsersForm />
+    </div>
+  );
 }
