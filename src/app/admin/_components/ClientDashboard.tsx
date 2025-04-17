@@ -99,7 +99,7 @@ export default function ClientDashboard() {
                   alt="Report Image"
                   className="w-full h-auto rounded-md mb-4"
                 />
-                <div className="space-y-1 sm:space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                <div className="space-y-1 sm:space-y-2 text-sm text-black dark:text-black">
                   <p><strong>Location:</strong> {selectedReport.location}</p>
                   <p><strong>Pincode:</strong> {selectedReport.pincode}</p>
                   <p><strong>Disaster Type:</strong> {selectedReport.disasterType}</p>
