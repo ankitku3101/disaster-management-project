@@ -22,6 +22,7 @@ class Weather:
                 "temp": data['current']['temp'],
                 "humidity": data['current']['humidity'],
                 "weather": data['current']['weather'],
+                "hourly": data['hourly'],
                 "alerts": self.get_alerts(),
             }
         else:
