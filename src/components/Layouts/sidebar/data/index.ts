@@ -19,7 +19,7 @@ export const NAV_DATA = [
       {
         title: "Admin Dashboard",
         url: "/admin",
-        icon: Icons.User,
+        icon: Icons.ShieldCheck,
         items: [],
       },
       {
