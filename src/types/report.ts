@@ -1,11 +1,10 @@
 export interface UserReport {
-  _id: string;
+  _id?: string; 
   name: string;
+  disasterType: string;
   location: string;
   pincode: number;
-  disasterType: string;
   description: string;
-  imageUrl: string;
   timestamp: string;
-  severity?: string;
+  imageUrl: string;
 }
