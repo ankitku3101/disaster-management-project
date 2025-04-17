@@ -1,5 +1,4 @@
-import { WeatherOverview } from "@/components/Charts/weather_overview";
-// import { TopChannels } from "@/components/Tables/top-channels";
+import { WeatherChartWrapper } from "@/components/Charts/weather_overview/WeatherChartWrapper"; // ✅ use wrapper
 import { TopChannelsSkeleton } from "@/components/Tables/top-channels/skeleton";
 import { createTimeFrameExtractor } from "@/utils/timeframe-extractor";
 import { Suspense } from "react";
@@ -7,7 +6,7 @@ import { DisasterAlertsCard } from "./_components/DisasterAlertsCard";
 import { OverviewCardsGroup } from "./_components/overview-cards";
 import { OverviewCardsSkeleton } from "./_components/overview-cards/skeleton";
 import { RegionLabels } from "./_components/region-labels";
-import { CrowdReportSection } from "./_components/CrowdReportSection"; 
+import { CrowdReportSection } from "./_components/CrowdReportSection";
 import SafetyTips from "./_components/SafetyTips";
 import { WeatherCard } from "./_components/WeatherCard";
 
@@ -23,39 +22,48 @@ export default async function Home({ searchParams }: PropsType) {
 
   return (
     <>
+      {/* 👇 Overview Cards Section */}
       <Suspense fallback={<OverviewCardsSkeleton />}>
         <OverviewCardsGroup />
       </Suspense>
 
-      <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-9 2xl:gap-7.5">
-        <WeatherOverview
-          className="col-span-12 xl:col-span-7"
-          // key={extractTimeFrame("weather_overview")}
-          // timeFrame={extractTimeFrame("weather_overview")?.split(":")[1]}
-        />
-
-        
-          <DisasterAlertsCard />
-        
-
-        <RegionLabels />
-
-        {/* ✅ Community Crowd Report Section */}
-        <CrowdReportSection />
-
-        {/* ✅ Safety Tips Section */}
-        {/* <div className="col-span-12">
-          <SafetyTips />
+      {/* 👇 Main Grid */}
+      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-12">
+        {/* 🟦 Weather Overview Chart */}
+        <div className="col-span-12 xl:col-span-7 ">
+          <WeatherChartWrapper /> {/* ✅ FIXED: No more undefined chartData */}
         </div>
-        <div className="lg:col-span-1">
+
+        {/* 🟥 Disaster Alerts */}
+        <div className="col-span-12 xl:col-span-5">
+          <DisasterAlertsCard />
+        </div>
+
+        {/* 🟨 Region Labels */}
+        <div className="col-span-12">
+          <RegionLabels />
+        </div>
+
+        {/* 🟩 Community Crowd Reports */}
+        <div className="col-span-12">
+          <CrowdReportSection />
+        </div>
+
+        {/* 🟧 Safety Tips + WeatherCard
+        <div className="col-span-12 xl:col-span-8">
+          <SafetyTips />
+        </div> */}
+        {/* <div className="col-span-12 xl:col-span-4">
           <WeatherCard />
         </div> */}
-        <div className="col-span-12 grid xl:col-span-8">
+
+        {/* 🟫 Top Channels Placeholder */}
+        <div className="col-span-12">
           <Suspense fallback={<TopChannelsSkeleton />}>
             {/* <TopChannels /> */}
           </Suspense>
         </div>
-      </div>
+      </div>  
     </>
   );
 }

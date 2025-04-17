@@ -6,8 +6,8 @@ import dynamic from "next/dynamic";
 
 type PropsType = {
   data: {
-    received: { x: unknown; y: number }[];
-    due: { x: unknown; y: number }[];
+    temp: { x: unknown; y: number }[];
+    humidity: { x: unknown; y: number }[];
   };
 };
 
@@ -91,12 +91,12 @@ export function WeatherOverviewChart({ data }: PropsType) {
         options={options}
         series={[
           {
-            name: "Received",
-            data: data.received,
+            name: "Temperature",
+            data: data.temp,
           },
           {
-            name: "Due",
-            data: data.due,
+            name: "Humidity",
+            data: data.humidity,
           },
         ]}
         type="area"

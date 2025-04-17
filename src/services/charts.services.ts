@@ -9,14 +9,14 @@ export async function getWeatherOverviewData(
 
   if (timeFrame === "yearly") {
     return {
-      received: [
+      temp: [
         { x: 2020, y: 450 },
         { x: 2021, y: 620 },
         { x: 2022, y: 780 },
         { x: 2023, y: 920 },
         { x: 2024, y: 1080 },
       ],
-      due: [
+      humidity: [
         { x: 2020, y: 1480 },
         { x: 2021, y: 1720 },
         { x: 2022, y: 1950 },
@@ -29,7 +29,7 @@ export async function getWeatherOverviewData(
   }
 
   return {
-    received: [
+    temp: [
       { x: "Jan", y: 0 },
       { x: "Feb", y: 20 },
       { x: "Mar", y: 35 },
@@ -43,7 +43,7 @@ export async function getWeatherOverviewData(
       { x: "Nov", y: 60 },
       { x: "Dec", y: 75 },
     ],
-    due: [
+    humidity: [
       { x: "Jan", y: 15 },
       { x: "Feb", y: 9 },
       { x: "Mar", y: 17 },
