@@ -1,3 +1,4 @@
-.env
+/.env
+/myenv
 .DS_Store
 __pycache__/
