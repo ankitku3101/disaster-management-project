@@ -1,11 +1,9 @@
-// src/app/admin/_components/ClientDashboard.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import { UserReport } from "@/types/report";
 
-// your full client-side component logic here (exactly what you wrote before)
 export default function ClientDashboard() {
   const [reports, setReports] = useState<UserReport[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,63 +35,55 @@ export default function ClientDashboard() {
   const currentReports = reports.slice(indexOfFirstReport, indexOfLastReport);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-  const openModal = (report: UserReport) => {
-    setSelectedReport(report);
-  };
-
-  const closeModal = () => {
-    setSelectedReport(null);
-  };
+  const openModal = (report: UserReport) => setSelectedReport(report);
+  const closeModal = () => setSelectedReport(null);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
+    <div className="p-4 sm:p-6 bg-white text-black dark:bg-[#0f172a] dark:text-white min-h-screen transition-colors">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center sm:text-left">
+        Admin Dashboard
+      </h1>
 
       {loading ? (
-        <p>Loading reports...</p>
+        <p className="text-center sm:text-left">Loading reports...</p>
       ) : reports.length === 0 ? (
-        <p>No reports available.</p>
+        <p className="text-center sm:text-left">No reports available.</p>
       ) : (
         <>
-          <div className="overflow-x-auto">
-            <ul className="space-y-4">
-              {currentReports.map((report) => (
-                <li
-                  key={report._id}
-                  className="border p-4 rounded-md shadow-sm hover:shadow-lg cursor-pointer"
-                  onClick={() => openModal(report)}
-                >
-                  <div className="flex justify-between items-center">
-                    <div className="flex flex-col">
-                      <p className="text-gray-700 text-sm font-medium">
-                        {report.description.length > 80
-                          ? report.description.slice(0, 80) + "..."
-                          : report.description}
-                      </p>
-                    </div>
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
-                      <span>{report.location}</span>
-                      <span>{report.disasterType}</span>
-                    </div>
+          <ul className="space-y-4">
+            {currentReports.map((report) => (
+              <li
+                key={report._id}
+                className="p-4 sm:p-5 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-slate-800 shadow hover:shadow-md transition cursor-pointer"
+                onClick={() => openModal(report)}
+              >
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                  <p className="text-sm sm:text-base font-medium text-gray-800 dark:text-gray-100">
+                    {report.description.length > 80
+                      ? report.description.slice(0, 80) + "..."
+                      : report.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                    <span>{report.location}</span>
+                    <span>{report.disasterType}</span>
                   </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+                </div>
+              </li>
+            ))}
+          </ul>
 
-          <div className="flex justify-center mt-4">
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
-              className="bg-gray-500 text-white px-4 py-2 rounded-md mr-2"
+              className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 text-sm"
             >
               Previous
             </button>
             <button
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage * reportsPerPage >= reports.length}
-              className="bg-gray-500 text-white px-4 py-2 rounded-md"
+              className="w-full sm:w-auto px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 text-sm"
             >
               Next
             </button>
@@ -102,25 +92,19 @@ export default function ClientDashboard() {
           {selectedReport && (
             <Modal onClose={closeModal}>
               <div>
-                <h2 className="text-xl font-bold mb-4">{selectedReport.name}</h2>
-                <p className="mb-4">{selectedReport.description}</p>
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">{selectedReport.name}</h2>
+                <p className="mb-4 text-sm sm:text-base">{selectedReport.description}</p>
                 <img
                   src={selectedReport.imageUrl}
                   alt="Report Image"
                   className="w-full h-auto rounded-md mb-4"
                 />
-                <div className="space-y-2">
-                  <p className="text-sm text-gray-500">
-                    Location: {selectedReport.location}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Pincode: {selectedReport.pincode}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Disaster Type: {selectedReport.disasterType}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Timestamp:{" "}
+                <div className="space-y-1 sm:space-y-2 text-sm text-gray-600 dark:text-gray-300">
+                  <p><strong>Location:</strong> {selectedReport.location}</p>
+                  <p><strong>Pincode:</strong> {selectedReport.pincode}</p>
+                  <p><strong>Disaster Type:</strong> {selectedReport.disasterType}</p>
+                  <p>
+                    <strong>Timestamp:</strong>{" "}
                     {new Date(selectedReport.timestamp).toLocaleString()}
                   </p>
                 </div>

@@ -186,3 +186,19 @@ export function ArrowLeftIcon(props: PropsType) {
     </svg>
   );
 }
+
+export function ShieldCheck(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M12 1.5c-.3 0-.6.1-.9.2l-7 3.1c-.6.3-1.1 1-.1 1.5l7.3 3.2c.3.1.6.1.9 0l7.3-3.2c1-.5.5-1.2-.1-1.5l-7-3.1c-.3-.1-.6-.2-.9-.2zM4.5 8.1v5.4c0 4.2 2.9 7.9 7.5 8.9 4.6-1 7.5-4.7 7.5-8.9V8.1l-7 3.1c-.3.1-.6.1-.9 0l-7-3.1zM10.97 14.78l-2.25-2.25a.75.75 0 0 1 1.06-1.06l1.47 1.47 3.47-3.47a.75.75 0 0 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0z" />
+    </svg>
+  );
+}
+
