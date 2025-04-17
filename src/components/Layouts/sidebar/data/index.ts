@@ -17,6 +17,12 @@ export const NAV_DATA = [
         items: [],
       },
       {
+        title: "Admin Dashboard",
+        url: "/admin",
+        icon: Icons.User,
+        items: [],
+      },
+      {
         title: "Types",
         icon: Icons.Alphabet, // Replace with your desired icon
         items: [
