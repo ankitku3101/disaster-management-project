@@ -100,19 +100,19 @@ export function WeatherCard() {
   if (!weatherData) return null;
 
   return (
-    <div className="rounded-[10px] p-6 shadow-1 bg-gradient-to-br from-zinc-500 to-emerald-400 text-dark space-y-6">
+    <div className="rounded-[10px] p-6 shadow-1 bg-gradient-to-br from-zinc-500 to-emerald-400 text-black space-y-6">
       {/* Icon and Temperature */}
       <div className="flex items-center gap-4">
         {getWeatherIcon(weatherData.condition)}
         <div>
           <p className="text-heading-6 font-bold">{weatherData.temperature}°C</p>
-          <p className="text-sm capitalize text-dark-6">{weatherData.condition}</p>
+          <p className="text-sm capitalize text-black-6">{weatherData.condition}</p>
         </div>
       </div>
 
       {/* Location */}
       {locationData && (
-        <p className="text-sm font-medium text-dark-6">
+        <p className="text-sm font-medium text-black-6">
           {locationData.city}, {locationData.country_name}
         </p>
       )}
@@ -120,12 +120,12 @@ export function WeatherCard() {
       {/* Extra Info */}
       <div className="flex gap-6">
         <div className="flex items-center gap-2">
-          <Droplets className="text-blue-400" size={20} />
+          <Droplets className="text-black-400" size={20} />
           <span className="text-sm">{weatherData.humidity}%</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <Wind className="text-gray-400" size={20} />
+          <Wind className="text-black-400" size={20} />
           <span className="text-sm">{weatherData.windSpeed} km/h</span>
         </div>
       </div>
