@@ -80,7 +80,7 @@ export function OverviewCardsGroup() {
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 2xl:gap-7.5">
         <OverviewCard
           label="Your Location"
-          className="bg-gradient-to-br from-emerald-300 to-emerald-600"
+          className="bg-gradient-to-br from-emerald-300 to-emerald-600 text-dark"
           data={{ value: locationData.location }}
           Icon={icons.Location}
         />
