@@ -64,13 +64,13 @@ export function WeatherCard() {
         return <Sun size={32} className="text-yellow-500" />;
       case "partly cloudy":
       case "partly sunny":
-        return <CloudSun size={32} className="text-gray-400" />;
+        return <CloudSun size={32} className="text-blue-700" />;
       case "cloudy":
       case "clouds":
-        return <Cloudy size={32} className="text-gray-500" />;
+        return <Cloudy size={32} className="text-blue-700" />;
       case "fog":
       case "haze":
-        return <CloudFog size={32} className="text-gray-400" />;
+        return <CloudFog size={32} className="text-blue-700" />;
       case "drizzle":
         return <CloudDrizzle size={32} className="text-blue-400" />;
       case "rain":

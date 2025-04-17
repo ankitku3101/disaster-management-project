@@ -1,11 +1,9 @@
 import { TrendingUpIcon } from "@/assets/icons";
 import { compactFormat } from "@/lib/format-number";
 import { cn } from "@/lib/utils";
-import { getCampaignVisitorsData } from "@/services/charts.services";
 import { CampaignVisitorsChart } from "./chart";
 
-export async function CampaignVisitors({ className }: { className?: string }) {
-  const data = await getCampaignVisitorsData();
+export async function CampaignVisitors({ className }: ) {
 
   return (
     <div
@@ -14,7 +12,7 @@ export async function CampaignVisitors({ className }: { className?: string }) {
         className,
       )}
     >
-      <div className="border-b border-stroke px-6 py-5.5 dark:border-dark-3">
+      {/* <div className="border-b border-stroke px-6 py-5.5 dark:border-dark-3">
         <div className="flex justify-between">
           <h2 className="mb-1.5 text-2xl font-bold text-dark dark:text-white">
             Campaign Visitors
@@ -43,7 +41,7 @@ export async function CampaignVisitors({ className }: { className?: string }) {
         </div>
       </div>
 
-      <CampaignVisitorsChart data={data.chart} />
+      <CampaignVisitorsChart data={data.chart} /> */}
     </div>
   );
 }
