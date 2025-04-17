@@ -34,9 +34,9 @@ export default async function Home({ searchParams }: PropsType) {
           // timeFrame={extractTimeFrame("weather_overview")?.split(":")[1]}
         />
 
-        <Suspense fallback={null}>
+        
           <DisasterAlertsCard />
-        </Suspense>
+        
 
         <RegionLabels />
 
@@ -44,12 +44,12 @@ export default async function Home({ searchParams }: PropsType) {
         <CrowdReportSection />
 
         {/* ✅ Safety Tips Section */}
-        <div className="col-span-12">
+        {/* <div className="col-span-12">
           <SafetyTips />
         </div>
         <div className="lg:col-span-1">
           <WeatherCard />
-        </div>
+        </div> */}
         <div className="col-span-12 grid xl:col-span-8">
           <Suspense fallback={<TopChannelsSkeleton />}>
             {/* <TopChannels /> */}
